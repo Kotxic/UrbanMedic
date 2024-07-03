@@ -7,6 +7,7 @@ import {useDispatch} from "react-redux";
 const Header = () => {
     const dispatch=useDispatch()
     const [showModal, setShowModal] = useState(false);
+    console.log('asd')
     const [user, setUser]=useState(
         {name:{first:'', last:''}, gender:'', email:'', generate:true}
     )

@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/Kotxic/UrbanMedic/static/css/main.d750c82a.css",
+    "main.js": "/Kotxic/UrbanMedic/static/js/main.f4a6e9e1.js",
+    "static/media/Arrov left 3.svg": "/Kotxic/UrbanMedic/static/media/Arrov left 3.b5dac740f219310f43170849805b20ad.svg",
+    "static/media/Deleted.svg": "/Kotxic/UrbanMedic/static/media/Deleted.557c260335ad21c16809792143a8697d.svg",
+    "index.html": "/Kotxic/UrbanMedic/index.html",
+    "main.d750c82a.css.map": "/Kotxic/UrbanMedic/static/css/main.d750c82a.css.map",
+    "main.f4a6e9e1.js.map": "/Kotxic/UrbanMedic/static/js/main.f4a6e9e1.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.d750c82a.css",
+    "static/js/main.f4a6e9e1.js"
+  ]
+}

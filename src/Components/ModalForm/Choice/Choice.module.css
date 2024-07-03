@@ -1,0 +1,26 @@
+.choice{
+    display: flex;
+    justify-content: center;
+    margin-right: auto;
+    margin-left: auto;
+    width: 350px;
+    padding: 3px;
+    border-radius: 10px;
+    background-color: #F2F2F7;
+}
+.choice button {
+    width: 173px;
+    padding: 10px 20px;
+    border: none;
+    color: #8E8E93;
+    border-radius: 4px;
+    background-color: transparent;
+    cursor: pointer;
+}
+.choice button.selected {
+    width: 173px;
+    box-shadow: 0px 1px 4px 0px #0000000F;
+    background-color: #FFFFFF;
+    border-radius: 8px;
+    color: #000;
+}

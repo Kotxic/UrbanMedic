@@ -1,0 +1,22 @@
+.header{
+    height: 80px;
+    padding: 0px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.title{
+    font-size: 32px;
+    font-weight: 500;
+    color: #505050;
+}
+.buttons{
+    display: flex;
+    gap: 20px;
+    width: 340px;
+}
+.link{
+    width: 90px;
+    background-color: #F2F2F7;
+    color: #000;
+}

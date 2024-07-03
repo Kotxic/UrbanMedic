@@ -1,0 +1,14 @@
+.string{
+    display: grid;
+    grid-template-columns: 1fr 2fr 2fr 2fr 3fr 2fr;
+    align-items: center;
+    font-family: Roboto;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 16px;
+    color: #000;
+    border: 1px solid #F2F2F7;
+}
+.string>p{
+    padding-left: 12px;
+}

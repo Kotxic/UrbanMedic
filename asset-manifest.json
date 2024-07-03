@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/UrbanMedic/static/css/main.d750c82a.css",
-    "main.js": "/UrbanMedic/static/js/main.20d6560b.js",
+    "main.js": "/UrbanMedic/static/js/main.38bf89d7.js",
     "static/media/Arrov left 3.svg": "/UrbanMedic/static/media/Arrov left 3.b5dac740f219310f43170849805b20ad.svg",
     "static/media/Deleted.svg": "/UrbanMedic/static/media/Deleted.557c260335ad21c16809792143a8697d.svg",
     "index.html": "/UrbanMedic/index.html",
     "main.d750c82a.css.map": "/UrbanMedic/static/css/main.d750c82a.css.map",
-    "main.20d6560b.js.map": "/UrbanMedic/static/js/main.20d6560b.js.map"
+    "main.38bf89d7.js.map": "/UrbanMedic/static/js/main.38bf89d7.js.map"
   },
   "entrypoints": [
     "static/css/main.d750c82a.css",
-    "static/js/main.20d6560b.js"
+    "static/js/main.38bf89d7.js"
   ]
 }

@@ -20,7 +20,7 @@ const reducer = (state = defaultState, action) => {
         case 'CREATED_USERS':
             return {...state, usersCreated: action.payload}
         case 'DELETE_USERS':
-            return {...state, usersCreated: []}
+            return {...state, usersCreated: [], users: []}
         case 'LOGIN_SUCCESS':
             return { ...state, isAuthenticated: true };
         case 'LOGOUT':

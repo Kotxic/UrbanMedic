@@ -16,7 +16,7 @@ const ModalForm = ({active, setActive, user}) => {
         setName(user.name.first)
         setNameLast(user.name.last)
     },[active])
-   const [gender, setGender] = useState(''); // Состояние для выбора пола
+   const [gender, setGender] = useState('male'); // Состояние для выбора пола
    const [nameLast, setNameLast] = useState(''); // Состояние для введенного имени
    const [email, setEmail] = useState(''); // Состояние для введенного имени
    const [name, setName] = useState(''); // Состояние для введенного имени

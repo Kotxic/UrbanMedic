@@ -8,9 +8,8 @@ const Header = () => {
     const dispatch=useDispatch()
     const [showModal, setShowModal] = useState(false);
     console.log('asd')
-    const [user, setUser]=useState(
-        {name:{first:'', last:''}, gender:'', email:'', generate:true}
-    )
+    const user= {name:{first:'', last:''}, gender:'male', email:'', generate:true}
+
 
     function logout(){
         dispatch({type:"LOGOUT"})

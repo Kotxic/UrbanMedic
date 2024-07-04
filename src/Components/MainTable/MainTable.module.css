@@ -5,6 +5,17 @@
     max-height: 550px;
     overflow-y: auto;
     }
+.table::-webkit-scrollbar{
+    width: 5px;
+    height: 54px;
+}
+.table::-webkit-scrollbar-track{
+    background: #F2F2F7;
+}
+.table::-webkit-scrollbar-thumb{
+    background: linear-gradient(136.66deg, #00A5EE 1.58%, #14D7D1 96.24%);
+    border-radius: 8px;
+}
 
 .string{
     display: grid;

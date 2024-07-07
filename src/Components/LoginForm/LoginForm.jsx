@@ -45,6 +45,7 @@ const LoginForm = () => {
                         value={seed}
                         onChange={handleSeedChange}
                         error={seedError}
+                        changed={true}
                     />
                     {(seedError)
                         ? <p className={cl.error}>*поле заполнено не корректно </p>

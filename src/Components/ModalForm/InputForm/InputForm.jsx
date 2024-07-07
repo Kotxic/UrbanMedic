@@ -2,14 +2,17 @@ import React, {useState} from 'react';
 import MyInput from '../../../UI/MyInput/MyInput';
 import cl from './InputForm.module.css'
 
-const InputForm = ({name, lastName, email, setName, setLastName, setEmail, nameError, lastNameError, emailError, setNameError, setLastNameError, setEmailError, focus, setFocus }) => {
-
+const InputForm = ({name, lastName, email, setName, setLastName, setEmail, nameError, lastNameError, emailError, setNameError, setLastNameError, setEmailError, changed, setChanged }) => {
+    const [focus, setFocus]=useState(false)
     const handleFocus = () => {
         setFocus(true);
     };
 
     const handleBlur = () => {
         setFocus(false);
+        if(email){
+            setChanged(true)
+        }
     };
     const handleNameChange = (e) => {
         const value = e.target.value;
@@ -53,7 +56,7 @@ const InputForm = ({name, lastName, email, setName, setLastName, setEmail, nameE
                 onChange={handleSurnameChange}
                 placeholder="Фамилия"
                 error={lastNameError}
-                focus={false}
+                changed={true}
             />
             {name
                 ? <p className={cl.info}>Имя*</p>
@@ -64,7 +67,7 @@ const InputForm = ({name, lastName, email, setName, setLastName, setEmail, nameE
                 onChange={handleNameChange}
                 placeholder="Имя"
                 error={nameError}
-                focus={false}
+                changed={true}
             />
             {email
                 ? <p className={cl.info}>Почта*</p>
@@ -77,7 +80,7 @@ const InputForm = ({name, lastName, email, setName, setLastName, setEmail, nameE
                 onChange={handleEmailChange}
                 placeholder="Email"
                 error={emailError}
-                focus={focus}
+                changed={changed}
             />
         </div>
     );

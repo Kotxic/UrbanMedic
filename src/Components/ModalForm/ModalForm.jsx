@@ -23,7 +23,7 @@ const ModalForm = ({active,setActive, user}) => {
    const [nameLast, setNameLast] = useState(''); // Состояние для введенного имени
    const [email, setEmail] = useState(''); // Состояние для введенного имени
    const [name, setName] = useState(''); // Состояние для введенного имени
-
+    const [focus, setFocus]=useState(false)
     const [nameError, setNameError]=useState('')
     const [lastError, setLastError]=useState('')
     const [emailError, setEmailError]=useState('')
@@ -79,8 +79,10 @@ const ModalForm = ({active,setActive, user}) => {
                             emailError={emailError}
                             setNameError={setNameError}
                             setLastNameError={setLastError}
-                            setEmailError={setEmailError}/>
-                {(!nameError && !lastError && !emailError)
+                            setEmailError={setEmailError}
+                            focus={focus}
+                            setFocus={setFocus}/>
+                {(!nameError && !lastError &&(!emailError || focus))
                     ? <p className={cl.notError}></p>
                     : <p className={cl.error}>*Некоторые поля заполнены не корректно</p>
                 }

@@ -1,8 +1,16 @@
-import React from 'react';
+import React, {useState} from 'react';
 import MyInput from '../../../UI/MyInput/MyInput';
 import cl from './InputForm.module.css'
 
-const InputForm = ({name, lastName, email, setName, setLastName, setEmail, nameError, lastNameError, emailError, setNameError, setLastNameError, setEmailError }) => {
+const InputForm = ({name, lastName, email, setName, setLastName, setEmail, nameError, lastNameError, emailError, setNameError, setLastNameError, setEmailError, focus, setFocus }) => {
+
+    const handleFocus = () => {
+        setFocus(true);
+    };
+
+    const handleBlur = () => {
+        setFocus(false);
+    };
     const handleNameChange = (e) => {
         const value = e.target.value;
         const nameRegex = /^[а-яА-ЯёЁ-]{1,20}$/;
@@ -45,6 +53,7 @@ const InputForm = ({name, lastName, email, setName, setLastName, setEmail, nameE
                 onChange={handleSurnameChange}
                 placeholder="Фамилия"
                 error={lastNameError}
+                focus={false}
             />
             {name
                 ? <p className={cl.info}>Имя*</p>
@@ -55,16 +64,20 @@ const InputForm = ({name, lastName, email, setName, setLastName, setEmail, nameE
                 onChange={handleNameChange}
                 placeholder="Имя"
                 error={nameError}
+                focus={false}
             />
             {email
                 ? <p className={cl.info}>Почта*</p>
                 : <p className={cl.info}></p>}
             <MyInput
+                onFocus={handleFocus}
+                onBlur={handleBlur}
                 type="text"
                 value={email}
                 onChange={handleEmailChange}
                 placeholder="Email"
                 error={emailError}
+                focus={focus}
             />
         </div>
     );

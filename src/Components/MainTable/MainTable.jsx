@@ -6,21 +6,29 @@ import {useDispatch, useSelector} from "react-redux";
 import API from "../../API/API";
 const MainTable = () => {
     const[modalItem, setModalItem]=useState({name:{first:'', last:''}, gender:'', email:'', generate:true})
-    const[modalActive, setModalActive]=useState(false)
     const users= useSelector(state=>state.users)
     const usersCreate= useSelector(state => state.usersCreated)
     const seed = useSelector(state => state.seed)
+    const activeModal=useSelector(state => state.modalActive)
     const dispatch= useDispatch()
     const [page, setPage]=useState(1)
     const tableRef = useRef(null);
     const [loading, setLoading] = useState(false);
+    const [active, setActive]=useState(false)
 
     var newUsers=usersCreate.length>0 ?[...usersCreate,...users] :users
-    console.log(newUsers)
     function openModal(item){
         setModalItem({name:{first:item.name.first, last:item.name.last}, gender:item.gender, email:item.email, generate:false})
-        setModalActive(true)
+        setActive(true)
+
     }
+    useEffect(()=>{
+        if (activeModal){
+            setModalItem({name:{first:'', last:''}, gender:'male', email:'', generate:true})
+            setActive(true)
+        }
+    }, [activeModal])
+
 
     useEffect(() => {
         fetchInfo();
@@ -30,7 +38,6 @@ const MainTable = () => {
     async function fetchInfo() {
         setLoading(true);
         const response = await API.getInfoByPage(seed, page)
-        console.log("responas", response.results)
         dispatch({type: "CREATE_USERS", payload: [...users,...response.results]})
         newUsers=usersCreate.length>0 ?[...usersCreate,...users] :users
         setLoading(false);
@@ -61,7 +68,7 @@ const MainTable = () => {
                 <String key={index} item={item} index={index} openModal={openModal}/>
             )
             }
-            <ModalForm setActive={setModalActive} active={modalActive} user={modalItem}/>
+            <ModalForm active={active} setActive={setActive} user={modalItem} />
         </div>
     );
 };

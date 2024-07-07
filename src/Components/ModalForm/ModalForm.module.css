@@ -1,4 +1,3 @@
-
 .modalOverlay {
     position: fixed;
     top: 0;
@@ -9,29 +8,75 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    transition: opacity 0.4s ease-in-out;
+    opacity: 0;
+    pointer-events: none;
 }
-.modalOverlayHide{
-    display: none;
+
+.modalOverlayShow {
+    opacity: 1;
+    pointer-events: auto;
 }
+
+.modalOverlayHide {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Стиль для модального окна */
 .modal {
     display: flex;
     flex-direction: column;
     background-color: #fff;
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     width: 600px;
     max-width: 100%;
     text-align: center;
     gap: 15px;
+    transform: translateY(150%);
 }
+
+
+
+/* Показ модального окна */
+.modalShow {
+    animation: slideIn 0.4s forwards;
+}
+
+/* Скрытие модального окна */
+.modalHide {
+    animation: slideOut 0.4s forwards;
+}
+
+/* Анимации */
+@keyframes slideIn {
+    0% {
+        transform: translateY(150%);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideOut {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(150%);
+    }
+}
+
+
 .modalHeader{
     display: flex;
     justify-content:space-between;
     align-items: center;
 }
 .modal h2 {
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 }
 
 
@@ -42,6 +87,19 @@
 form {
     display: flex;
     flex-direction: column;
+}
+.hiading{
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 24px;
+
+    margin: 0;
+}
+.icon{
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    right: 24px;
 }
 
 .inputField {
@@ -63,10 +121,12 @@ form {
     display: flex;
     gap: 15px;
 }
+
 .notError{
     margin: 0;
 }
 .error{
+    margin: 0;
     font-family: Roboto;
     font-size: 13px;
     text-align: start;

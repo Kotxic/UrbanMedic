@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 import {Provider} from "react-redux";
 import {createStore} from "redux";
-
+import './app.css'
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 const defaultState = {
@@ -11,6 +11,7 @@ const defaultState = {
     isAuthenticated: false,
     seed: '',
     usersCreated:[],
+    modalActive:false,
 };
 
 const reducer = (state = defaultState, action) => {
@@ -29,6 +30,10 @@ const reducer = (state = defaultState, action) => {
             return { ...state, seed: action.payload };
         case 'DELETE_SEED':
             return { ...state, seed: '' };
+        case 'OPEN_MODAL':
+            return {...state, modalActive: true}
+        case "CLOSE_MODAL":
+            return {...state, modalActive: false}
         default:
             return state;
     }

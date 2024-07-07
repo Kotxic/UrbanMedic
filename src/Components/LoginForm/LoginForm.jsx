@@ -13,13 +13,10 @@ const LoginForm = () => {
     const [seedError, setSeedError]=useState('')
     const handleLogin = () => {
         if (!seedError && seed) {
-            console.log("seed", seed)
             dispatch({type: "LOGIN_SUCCESS"});
             dispatch({type: "CREATE_SEED", payload: seed})
         }
-        else{
-            console.log('asdasda')
-        }
+
     };
 
     const handleSeedChange = (e) => {
@@ -55,7 +52,7 @@ const LoginForm = () => {
                     }
                 </div>
 
-                <Link className={cl.link}  to={(!seedError && seed) ?'/Main': '/login'}><MyButton onClick={()=>handleLogin()}>Войти</MyButton></Link>
+                <Link className={cl.link}  to={(!seedError && seed) ?'/Main': '/login'}><MyButton styletype={(!seedError && seed) ?'' :'notActive'} onClick={()=>handleLogin()}>Войти</MyButton></Link>
             </form>
         </div>
     );

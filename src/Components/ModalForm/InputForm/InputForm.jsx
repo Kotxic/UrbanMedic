@@ -1,5 +1,6 @@
 import React from 'react';
 import MyInput from '../../../UI/MyInput/MyInput';
+import cl from './InputForm.module.css'
 
 const InputForm = ({name, lastName, email, setName, setLastName, setEmail, nameError, lastNameError, emailError, setNameError, setLastNameError, setEmailError }) => {
     const handleNameChange = (e) => {
@@ -35,6 +36,9 @@ const InputForm = ({name, lastName, email, setName, setLastName, setEmail, nameE
 
     return (
         <div>
+            {lastName
+                ? <p className={cl.info}>Фамилия*</p>
+                : <p className={cl.info}></p>}
             <MyInput
                 type="text"
                 value={lastName}
@@ -42,6 +46,9 @@ const InputForm = ({name, lastName, email, setName, setLastName, setEmail, nameE
                 placeholder="Фамилия"
                 error={lastNameError}
             />
+            {name
+                ? <p className={cl.info}>Имя*</p>
+                : <p className={cl.info}></p>}
             <MyInput
                 type="text"
                 value={name}
@@ -49,6 +56,9 @@ const InputForm = ({name, lastName, email, setName, setLastName, setEmail, nameE
                 placeholder="Имя"
                 error={nameError}
             />
+            {email
+                ? <p className={cl.info}>Почта*</p>
+                : <p className={cl.info}></p>}
             <MyInput
                 type="text"
                 value={email}

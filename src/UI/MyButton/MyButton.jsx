@@ -1,8 +1,8 @@
 import React from 'react';
 import cl from './MyButton.module.css'
-const MyButton = ({children, ...props}) => {
+const MyButton = ({onClick, children, ...props}) => {
     let buttonStyle=[cl.myButton]
-    switch (props.styleType){
+    switch (props.styletype){
         case 'logout':
             buttonStyle.push(cl.logout)
             break;
@@ -14,12 +14,16 @@ const MyButton = ({children, ...props}) => {
             break;
         case 'delete':
             buttonStyle.push(cl.delete)
+            break;
+        case 'notActive':
+            buttonStyle.push(cl.notActive)
+            break;
         default:
            break;
     }
 
     return (
-        <button {...props} className={buttonStyle.join(' ')}>
+        <button onClick={onClick}  {...props} className={buttonStyle.join(' ')}>
             {children}
         </button>
     );

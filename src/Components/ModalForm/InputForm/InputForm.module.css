@@ -1,0 +1,14 @@
+.info{
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 13px;
+    margin: 0;
+    text-align: start;
+    color:#AEAEB2;
+}
+.info:not(:first-child){
+    margin: 16px 0 0 0;
+}
+.notInfo{
+
+}

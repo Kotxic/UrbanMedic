@@ -7,7 +7,7 @@ import {ReactComponent as Icon2} from '../../img/Deleted.svg'
 import Choice from "./Choice/Choice";
 import { createUser, deleteUser, updateUser } from './ModalDispatch/ModalDispatch'
 import InputForm from "./InputForm/InputForm";
-const ModalForm = ({active, setActive, user}) => {
+const ModalForm = ({active,setActive, user}) => {
     const dispatch= useDispatch()
     const createdUsers = useSelector(state => state.usersCreated)
     useEffect(()=>{
@@ -15,6 +15,9 @@ const ModalForm = ({active, setActive, user}) => {
         setGender(user.gender)
         setName(user.name.first)
         setNameLast(user.name.last)
+        setNameError('')
+        setLastError('')
+        setEmailError('')
     },[active])
    const [gender, setGender] = useState('male'); // Состояние для выбора пола
    const [nameLast, setNameLast] = useState(''); // Состояние для введенного имени
@@ -24,13 +27,45 @@ const ModalForm = ({active, setActive, user}) => {
     const [nameError, setNameError]=useState('')
     const [lastError, setLastError]=useState('')
     const [emailError, setEmailError]=useState('')
+    const [closing, setClosing]=useState(false)
+    //
+
+    const handleKeyDown = (event) => {
+        if (event.key === 'Enter') {
+            event.preventDefault();
+            if (user.generate && (!nameError && !lastError && !emailError && name && nameLast && email)) {
+                createUser(dispatch, nameError, lastError, emailError, name, nameLast, gender, email, createdUsers, closeModal);
+            } else if (!user.generate && (!nameError && !lastError && !emailError && name && nameLast && email)) {
+                updateUser(dispatch, nameError, lastError, emailError, name, nameLast, gender, email, user, createdUsers, closeModal);
+            }
+        }
+    };
+    useEffect(() => {
+        if (active) {
+            document.addEventListener('keydown', handleKeyDown);
+        } else {
+            document.removeEventListener('keydown', handleKeyDown);
+        }
+        return () => {
+            document.removeEventListener('keydown', handleKeyDown);
+        };
+    }, [active]);
+    const closeModal = () => {
+        setClosing(true);
+        setTimeout(() => {
+            setActive(false);
+            dispatch({type:"CLOSE_MODAL"})
+            setClosing(false);
+        }, 400); // Время должно совпадать с длительностью анимации slideOut
+    };
+
 
     return (
-        <div className={active ? cl.modalOverlay : cl.modalOverlayHide} onClick={()=>setActive(false)}>
-            <div className={cl.modal} onClick={event => event.stopPropagation()}>
+        <div onKeyDown={handleKeyDown} className={`${cl.modalOverlay} ${active && !closing ? cl.modalOverlayShow : ''} ${closing ? cl.modalOverlayHide : ''}`} onClick={()=>closeModal()}>
+            <div className={`${cl.modal} ${active && !closing ? cl.modalShow : ''} ${closing ? cl.modalHide : ''}`} onClick={event => event.stopPropagation()}>
                    <div className={cl.modalHeader}>
-                       <h2>Новый пользователь</h2>
-                       <Icon1 onClick={()=>setActive(false)}/>
+                       <h2 className={cl.hiading}>Новый пользователь</h2>
+                       <Icon1 className={cl.icon} onClick={()=>closeModal()}/>
                    </div>
                 <Choice gender={gender} setGender={setGender}/>
                 <InputForm  name={name}
@@ -51,17 +86,19 @@ const ModalForm = ({active, setActive, user}) => {
                 }
 
                 {user.generate
-                    ?<MyButton onClick={()=>createUser(
-                        dispatch, nameError, lastError, emailError, name, nameLast, gender, email, createdUsers, setActive
+                    ?<MyButton
+                        styletype={(!nameError && !lastError && !emailError && name && nameLast && email) ? '' :'notActive'}
+                        onClick={()=>createUser(
+                        dispatch, nameError, lastError, emailError, name, nameLast, gender, email, createdUsers, closeModal
                     )} type="submit" className={cl.submitButton}>
                         Создать
                     </MyButton>
                     : <div className={cl.buttons}>
-                        <MyButton styleType={'delete'} onClick={()=>deleteUser(
-                            dispatch, nameError, lastError, emailError, email, createdUsers, setActive
+                        <MyButton  styletype={'delete'} onClick={()=>deleteUser(
+                            dispatch, nameError, lastError, emailError, email, createdUsers, closeModal
                         )}><Icon2/></MyButton>
-                        <MyButton onClick={()=>updateUser(
-                            dispatch, nameError, lastError, emailError, name, nameLast, gender, email, user, createdUsers, setActive
+                        <MyButton styletype={(!nameError && !lastError && !emailError && name && nameLast && email) ? '' :'notActive'} onClick={()=>updateUser(
+                            dispatch, nameError, lastError, emailError, name, nameLast, gender, email, user, createdUsers, closeModal
                         )}>Сохранить</MyButton>
                     </div>
                 }

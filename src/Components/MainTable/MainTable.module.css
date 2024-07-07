@@ -1,4 +1,9 @@
+body{
+    background-color: #F7FCFE;
+}
 .table{
+    background-color: #fff;
+    margin-top: 48px;
     width: 1000px;
     margin-right: auto;
     margin-left: auto;
